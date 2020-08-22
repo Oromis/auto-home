@@ -1,5 +1,5 @@
-# Hello World Example
+# AutoHome
 
-Starts a FreeRTOS task to print "Hello World"
+David's personal home automation project.
 
-See the README.md file in the upper level 'examples' directory for more information about examples.
+Based on ESP32 microcontrollers, using ESP-IFD and the corresponding Arduino-Core framework. LED operation is handled by FastLED.
