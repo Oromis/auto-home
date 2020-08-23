@@ -45,12 +45,21 @@ foreach(component_dir ${local_components})
     endif()
 endforeach()
 
+add_definitions(-DFASTLED_HAS_CLOCKLESS)
+
 # --------------------------------------------------------------------------------
 # Configure project and entry point
 # --------------------------------------------------------------------------------
 
+set(project_sources
+        main/main.cpp
+        main/Vector.cpp
+        components/led/LinearLedStrip.cpp
+        components/led/PositionedLed.cpp
+        components/led/LedController.cpp
+        components/led/StaticUniformColor.cpp components/led/StaticUniformColor.h)
 project(auto-home)
-add_executable(${PROJECT_NAME} main/main.cpp)
+add_executable(${PROJECT_NAME} ${project_sources})
 
 list(LENGTH INCLUDE_LIST INCLUDE_LIST_LENGTH)
 message(STATUS "Include directories (${INCLUDE_LIST_LENGTH}): ${INCLUDE_LIST}")

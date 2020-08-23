@@ -14,11 +14,19 @@
 #include "Arduino.h"
 #include "FastLED.h"
 
+#include "../components/led/LedController.h"
+#include "../components/led/LinearLedStrip.h"
+
 CRGB leds[30];
 
+std::unique_ptr<LedController> ledController;
+
 void initLeds() {
-  FastLED.addLeds<NEOPIXEL, 12>(leds, 30);
+  CFastLED::addLeds<NEOPIXEL, 12>(leds, 30);
   FastLED.setTemperature(Tungsten100W);
+
+  LedController ledController1({ LinearLedStrip(Position::origin(), Direction::xPos(), 0.01f, leds, 30) });
+//  ledController = std::make_unique<LedController>({ LinearLedStrip(Position::origin(), Direction::xPos(), 0.01f, leds, 30) });
 }
 
 extern "C" [[noreturn]] void app_main()
